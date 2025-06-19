@@ -12,6 +12,3 @@ phases:
     commands:
       - docker push 297760130419.dkr.ecr.ap-northeast-2.amazonaws.com/green_1.0.1
 
-artifacts:
-  files:
-    - green_1.0.1
