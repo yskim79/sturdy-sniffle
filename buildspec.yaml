@@ -3,11 +3,19 @@ version: 0.2
 phases:
   pre_build:
     commands:
+      - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 297760130419.dkr.ecr.ap-northeast-2.amazonaws.com
+      - ls -al   # green_1.0.1 파일 존재 여부 확인(디버깅용)
   build:
     commands:
+      - echo Building the Docker image...
       - docker build -t green:1.0.1 .
-      - docker tag green:1.0.1 297760130419dkr.ecr.ap-northeast-2.amazonaws.com/green:1.0.1
+      - docker tag green:1.0.1 297760130419.dkr.ecr.ap-northeast-2.amazonaws.com/green:1.0.1
   post_build:
     commands:
+      - echo Pushing the Docker image...
       - docker push 297760130419.dkr.ecr.ap-northeast-2.amazonaws.com/green:1.0.1
+
+artifacts:
+  files:
+    - green_1.0.1
