@@ -4,14 +4,13 @@ phases:
   pre_build:
     commands:
       - aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 297760130419.dkr.ecr.ap-northeast-2.amazonaws.com
-      - ls -al
   build:
     commands:
-      - docker build -t green:1.0.1 .
-      - docker tag green:1.0.1 297760130419.dkr.ecr.ap-northeast-2.amazonaws.com/green:1.0.1
+      - docker build -t green_1.0.1 .
+      - docker tag green_1.0.1 297760130419.dkr.ecr.ap-northeast-2.amazonaws.com/green_1.0.1
   post_build:
     commands:
-      - docker push 297760130419.dkr.ecr.ap-northeast-2.amazonaws.com/green:1.0.1
+      - docker push 297760130419.dkr.ecr.ap-northeast-2.amazonaws.com/green_1.0.1
 
 artifacts:
   files:
